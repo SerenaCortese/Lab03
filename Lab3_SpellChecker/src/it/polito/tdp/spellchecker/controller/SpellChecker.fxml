@@ -30,21 +30,31 @@
                   </ChoiceBox>
                </children>
             </HBox>
-            <TextArea fx:id="txtInput" prefHeight="200.0" prefWidth="200.0" />
-            <Button fx:id="btnSpellCheck" alignment="CENTER" mnemonicParsing="false" onAction="#doSpellCheck" text="Spell Check">
+            <TextArea fx:id="txtInput" prefHeight="200.0" prefWidth="200.0">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </Button>
+               </VBox.margin></TextArea>
+            <HBox alignment="TOP_RIGHT">
+               <children>
+                  <Button fx:id="btnSpellCheck" alignment="CENTER" mnemonicParsing="false" onAction="#doSpellCheck" text="Spell Check">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
             <Label text="Wrong Words">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </Label>
-            <TextArea fx:id="txtOutput" editable="false" prefHeight="200.0" prefWidth="200.0" />
+            <TextArea fx:id="txtOutput" editable="false" prefHeight="200.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin></TextArea>
             <HBox alignment="TOP_RIGHT">
                <children>
-                  <Label fx:id="labelNumError" disable="true" text="Label" textFill="#f30707">
+                  <Label fx:id="labelNumError" disable="true" textFill="#f30707">
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
@@ -59,7 +69,7 @@
                   </Button>
                </children>
             </HBox>
-            <Label fx:id="labelTimeError" disable="true" text="Label">
+            <Label fx:id="labelTimeError" disable="true">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>

@@ -17,19 +17,8 @@ public class RichWord {
 		return parola;
 	}
 
-
-	public void setParola(String parola) {
-		this.parola = parola;
-	}
-
-
 	public boolean isCorretta() {
 		return corretta;
-	}
-
-
-	public void setCorretta(boolean corretta) {
-		this.corretta = corretta;
 	}
 	
 	
