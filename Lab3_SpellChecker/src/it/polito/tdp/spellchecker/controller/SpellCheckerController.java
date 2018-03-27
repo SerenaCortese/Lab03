@@ -97,14 +97,15 @@ public class SpellCheckerController {
 	    	labelTimeError.setText("Spell Check completed in "+tempo+" seconds");
 			return;
 		}
-		String inputFinale = input.replaceAll("[.,\\/#!$%\\^&\\*;:{}=\\-_`~()\\[\\]\"]"," ");
+		String inputFinale = input.replaceAll("[.,\\/#!?§<>+£@°$%\\^&\\*;:{}=\\-_`~()\\[\\]\"]"," ");
 		StringTokenizer st = new StringTokenizer(inputFinale.toLowerCase());
 		while(st.hasMoreTokens()) {
     		String token = st.nextToken();
     		inputText.add(token);
     	}
 		
-		model.spellCheckText(inputText);
+		//model.spellCheckTextLinear(inputText);
+		model.spellCheckTextDichotomic(inputText);
 		
 		//4.restituisce elenco parole errate
 		txtOutput.setText(model.getParoleErrate());

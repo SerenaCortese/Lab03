@@ -9,7 +9,6 @@ public class Dictionary {
 	
 	private int numErrori;
 	private List<String> dizionario;
-	private String lingua;
 	private List<RichWord> paroleInput;
 	
 	
@@ -25,7 +24,7 @@ public class Dictionary {
 	}
 
 	public void loadDictionary(String language) {
-		
+		String lingua = "";
 		if (language.toLowerCase().equals("italiano"))
 			lingua = "rsc/Italian.txt";
 		else if (language.toLowerCase().equals("english"))
@@ -45,7 +44,9 @@ public class Dictionary {
 		}		
 	}
 
-	public List<RichWord> spellCheckText(List<String> inputText) {
+	public List<RichWord> spellCheckText(List<String> inputText) { 
+		//dal testo penso che voglia restituito una lista con parole corrette E errate, non solo errate
+		
 		for(String s : inputText) {
 			if(dizionario.contains(s)) {
 				RichWord parola = new RichWord(s, true);
@@ -53,6 +54,60 @@ public class Dictionary {
 			}else {
 				RichWord parola = new RichWord(s, false);
 				paroleInput.add(parola);
+			}
+		}
+		return paroleInput;
+	}
+	
+	public List<RichWord> spellCheckTextLinear(List<String> inputText){
+		boolean flag = false;
+		
+		for(String s : inputText) {
+			
+			for(String d : this.dizionario) {
+				
+				if(d.equals(s.toLowerCase())) {
+					flag=true;
+					RichWord w = new RichWord(s, false);
+					paroleInput.add(w);
+					break;
+				}
+			}
+			
+			if(!flag) {
+				RichWord w = new RichWord(s, false);
+				paroleInput.add(w);
+				
+			}
+		}
+		return paroleInput;
+	}
+	
+	public List<RichWord> spellCheckTextDichotomic(List<String> inputText){
+		
+		for(String s : inputText) {
+			int inizio = 0;
+			int fine = inputText.size();
+			boolean trovato = false;
+			while(inizio<=fine && !trovato) {
+				int centro = (inizio+fine)/2;
+				if(s.toLowerCase().compareTo(dizionario.get(centro))==0) {
+					trovato=true;
+					RichWord w = new RichWord(s,true);
+					paroleInput.add(w);
+					break;
+				}
+				else if(s.toLowerCase().compareTo(dizionario.get(centro))>0) {
+					inizio = centro+1;
+				}
+				else {
+					fine = centro-1;	
+				}
+			}
+			
+			if(!trovato) {
+				RichWord w = new RichWord(s,false);
+				paroleInput.add(w);
 			}
 		}
 		return paroleInput;
